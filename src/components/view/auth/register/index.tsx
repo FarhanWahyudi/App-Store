@@ -22,6 +22,7 @@ export default function RegisterView() {
         confirmPassword: form.confirmPassword.value,
       }),
     });
+
     if (res.status === 200) {
       form.reset();
       setIsLoading(false);
@@ -29,7 +30,7 @@ export default function RegisterView() {
     } else if (res.status === 400) {
       setError('Account is Already Exists');
       setIsLoading(false);
-    } else {
+    } else if (res.status === 401) {
       setError('Password is Inavalid');
       setIsLoading(false);
     }
@@ -63,7 +64,7 @@ export default function RegisterView() {
             </label>
             <input type="password" className="outline-none bg-slate-200 p-2 rounded-sm" name="confirmPassword" id="confirmPassword" placeholder="****" />
           </div>
-          {error !== '' && <p className="text-center text-red-600 font-medium mt-3">password is invalid</p>}
+          {error !== '' && <p className="text-center text-red-600 font-medium mt-3">{error}</p>}
           <button type="submit" className="w-full p-2 text-center bg-black text-white rounded-sm mt-7" disabled={isLoading}>
             {isLoading ? 'Loading...' : 'Register'}
           </button>
