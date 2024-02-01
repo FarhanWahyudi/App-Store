@@ -45,3 +45,17 @@ export async function signUp(userData: { fullname: string; email: string; passwo
     }
   }
 }
+
+export async function signIn(data: { email: string }) {
+  const q = query(collection(firestore, 'users'), where('email', '==', data.email));
+  const snapshot = await getDocs(q);
+  const user = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  if (user) {
+    return user[0];
+  } else {
+    return null;
+  }
+}
