@@ -56,7 +56,7 @@ export default function LoginView() {
           </button>
         </form>
         <p className="mt-5 text-center">
-          Dont have an account? Sign up{' '}
+          Dont have an Account? Sign up{' '}
           <Link href="/register" className="font-bold">
             here
           </Link>
