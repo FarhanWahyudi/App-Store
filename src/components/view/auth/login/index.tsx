@@ -4,6 +4,8 @@ import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 export default function LoginView() {
   const [error, setError] = useState('');
@@ -55,6 +57,11 @@ export default function LoginView() {
             {isLoading ? 'Loading...' : 'Login'}
           </button>
         </form>
+        <hr className="my-5 border-slate-900" />
+        <button onClick={() => signIn('google', { callbackUrl: '/', redirect: false })} type="button" className="w-full p-2 text-center text-black border border-black rounded-sm" disabled={isLoading}>
+          <FontAwesomeIcon icon={faGoogle} className="mr-2" />
+          Sign in with Google
+        </button>
         <p className="mt-5 text-center">
           Dont have an Account? Sign up{' '}
           <Link href="/register" className="font-bold">
