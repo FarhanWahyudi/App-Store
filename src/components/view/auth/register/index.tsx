@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import Input from '@/components/ui/Input';
+import Button from '@/components/ui/Button';
 
 export default function RegisterView() {
   const [error, setError] = useState('');
@@ -43,40 +45,20 @@ export default function RegisterView() {
       <h1 className="text-3xl font-bold mb-3">Register</h1>
       <div className="w-1/3 border-2 border-gray-300 rounded-md p-7">
         <form onSubmit={handleRegister}>
-          <div className="flex flex-col gap-y-1 mt-5">
-            <label htmlFor="fullname" className="font-bold text-base">
-              Fullname
-            </label>
-            <input type="text" className="outline-none bg-slate-200 p-2 rounded-sm" name="fullname" id="fullname" placeholder="john doe" />
-          </div>
-          <div className="flex flex-col gap-y-1 mt-5">
-            <label htmlFor="email" className="font-bold text-base">
-              Email
-            </label>
-            <input type="email" className="outline-none bg-slate-200 p-2 rounded-sm" name="email" id="email" placeholder="johndoe@example.com" />
-          </div>
-          <div className="flex flex-col gap-y-1 mt-5">
-            <label htmlFor="password" className="font-bold text-base">
-              Password
-            </label>
-            <input type="password" className="outline-none bg-slate-200 p-2 rounded-sm" name="password" id="password" placeholder="****" />
-          </div>
-          <div className="flex flex-col gap-y-1 mt-5">
-            <label htmlFor="confirmPassword" className="font-bold text-base">
-              Confirm Password
-            </label>
-            <input type="password" className="outline-none bg-slate-200 p-2 rounded-sm" name="confirmPassword" id="confirmPassword" placeholder="****" />
-          </div>
+          <Input name="fullname" label="Fullname" placeholder="john doe" type="text" />
+          <Input name="email" label="Email" placeholder="johndoe@example.com" type="email" />
+          <Input name="password" label="Password" placeholder="****" type="password" />
+          <Input name="confirmPassword" label="Confirm Password" placeholder="****" type="password" />
           {error !== '' && <p className="text-center text-red-600 font-medium mt-3">{error}</p>}
-          <button type="submit" className="w-full p-2 text-center bg-black text-white rounded-sm mt-7" disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'Register'}
-          </button>
+          <Button type="submit" disabled={isLoading} size="p-2 w-full mt-7" style="bg-black text-white rounded-sm">
+            {isLoading ? 'Loading...' : 'Login'}
+          </Button>
         </form>
         <hr className="my-5 border-slate-900" />
-        <button onClick={() => signIn('google', { callbackUrl: '/', redirect: false })} type="button" className="w-full p-2 text-center text-black border border-black rounded-sm" disabled={isLoading}>
+        <Button onClick={() => signIn('google', { callbackUrl: '/', redirect: false })} type="button" size="p-2 w-full" style="text-black border border-black rounded-sm">
           <FontAwesomeIcon icon={faGoogle} className="mr-2" />
           Sign in with Google
-        </button>
+        </Button>
         <p className="mt-5 text-center">
           Have an account? Sign in{' '}
           <Link href="/login" className="font-bold">

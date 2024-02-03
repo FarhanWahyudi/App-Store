@@ -1,4 +1,4 @@
-import { loginWithGoogle, signIn } from '@/lib/firebase/route';
+import { loginWithGoogle, signIn } from '@/services/auth/route';
 import { compare } from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth/next';
