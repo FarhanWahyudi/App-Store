@@ -1,9 +1,12 @@
 import LoginView from '@/components/view/auth/login';
+import { Suspense } from 'react';
 
 export default function RegisterPage() {
   return (
     <>
-      <LoginView />
+      <Suspense fallback={<>Loading...</>}>
+        <LoginView />
+      </Suspense>
     </>
   );
 }

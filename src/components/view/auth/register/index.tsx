@@ -5,7 +5,6 @@ import { FormEvent, useState } from 'react';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import authService from '@/services/auth';
-import AuthLayout from '@/components/layout/AuthLayout';
 
 export default function RegisterView() {
   const [error, setError] = useState('');
@@ -36,17 +35,15 @@ export default function RegisterView() {
       });
   };
   return (
-    <AuthLayout title="Register" link="/login" linkText="Have an account? Sign in ">
-      <form onSubmit={handleRegister}>
-        <Input name="fullname" label="Fullname" placeholder="john doe" type="text" />
-        <Input name="email" label="Email" placeholder="johndoe@example.com" type="email" />
-        <Input name="password" label="Password" placeholder="****" type="password" />
-        <Input name="confirmPassword" label="Confirm Password" placeholder="****" type="password" />
-        {error !== '' && <p className="text-center text-red-600 font-medium mt-3">{error}</p>}
-        <Button type="submit" disabled={isLoading} size="p-2 w-full mt-7" style="bg-black text-white rounded-sm">
-          {isLoading ? 'Loading...' : 'Login'}
-        </Button>
-      </form>
-    </AuthLayout>
+    <form onSubmit={handleRegister}>
+      <Input name="fullname" label="Fullname" placeholder="john doe" type="text" />
+      <Input name="email" label="Email" placeholder="johndoe@example.com" type="email" />
+      <Input name="password" label="Password" placeholder="****" type="password" />
+      <Input name="confirmPassword" label="Confirm Password" placeholder="****" type="password" />
+      {error !== '' && <p className="text-center text-red-600 font-medium mt-3">{error}</p>}
+      <Button type="submit" disabled={isLoading} size="p-2 w-full mt-7" style="bg-black text-white rounded-sm">
+        {isLoading ? 'Loading...' : 'Login'}
+      </Button>
+    </form>
   );
 }
