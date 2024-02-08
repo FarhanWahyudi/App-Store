@@ -48,7 +48,7 @@ const authOptions: NextAuthOptions = {
         token.role = user.role;
       }
       if (account?.provider === 'google') {
-        const data = {
+        const data: any = {
           fullname: user.name,
           email: user.email,
           type: 'google',

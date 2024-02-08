@@ -1,5 +1,5 @@
 import Sidebar from '@/components/fragment/Sidebar';
-import { faCartFlatbedSuitcase, faChartColumn } from '@fortawesome/free-solid-svg-icons';
+import { faCartFlatbedSuitcase, faChartColumn, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
 export default function SidebarLayout({ children }: { children: React.ReactNode }) {
@@ -14,11 +14,16 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
       link: '/admin/products',
       icon: faCartFlatbedSuitcase,
     },
+    {
+      title: 'Users',
+      link: '/admin/users',
+      icon: faUserGroup,
+    },
   ];
   return (
     <div className="flex">
       <Sidebar lists={listSidebarItem} />
-      {children}
+      <div className="w-full">{children}</div>
     </div>
   );
 }

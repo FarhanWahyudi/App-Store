@@ -1,7 +1,9 @@
+import DashboardAdminView from '@/components/view/admin';
+
 export default function DashboardPage() {
   return (
-    <div>
-      <h1>dashboard</h1>
-    </div>
+    <>
+      <DashboardAdminView />
+    </>
   );
 }

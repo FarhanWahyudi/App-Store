@@ -34,7 +34,7 @@ export async function signIn(data: { email: string }) {
   }
 }
 
-export async function loginWithGoogle(data: { email: string; role?: string }, callback: Function) {
+export async function loginWithGoogle(data: { email: string; role?: string; created_at: Date; updated_at: Date; password?: string }, callback: Function) {
   const user = await retrieveDAtaByField('users', 'email', data.email);
 
   if (user.length > 0) {
@@ -44,6 +44,9 @@ export async function loginWithGoogle(data: { email: string; role?: string }, ca
     });
   } else {
     data.role = 'member';
+    data.created_at = new Date();
+    data.updated_at = new Date();
+    data.password = '';
     await addDoc(collection(firestore, 'users'), data).then(() => {
       callback(data);
     });

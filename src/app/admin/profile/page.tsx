@@ -1,7 +1,9 @@
+import ProfileAdminView from '@/components/view/admin/profile';
+
 export default function AdminProfilePage() {
   return (
-    <div>
-      <h1>Profile</h1>
-    </div>
+    <>
+      <ProfileAdminView />
+    </>
   );
 }
