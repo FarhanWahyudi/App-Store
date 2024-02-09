@@ -3,10 +3,12 @@ import Input from '@/components/ui/Input';
 import Modal from '@/components/ui/Modal';
 import Select from '@/components/ui/Select';
 import userService from '@/services/user';
+import { useSession } from 'next-auth/react';
 import { FormEvent, useState } from 'react';
 
 export default function ModalUpdateUser({ updatedUser, setUpdatedUser, setUsersData }: any) {
   const [isLoading, setIsLoading] = useState(false);
+  const session: any = useSession();
   const handleUpdateUser = async (event: FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
     const form: any = event.target as HTMLFormElement;
@@ -16,7 +18,7 @@ export default function ModalUpdateUser({ updatedUser, setUpdatedUser, setUsersD
     };
 
     await userService
-      .updateUsers(updatedUser.id, data)
+      .updateUsers(updatedUser.id, data, session.data?.accessToken)
       .then(async () => {
         setUpdatedUser({});
         const { data } = await userService
